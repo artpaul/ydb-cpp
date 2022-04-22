@@ -1,3 +1,8 @@
+# Builds.
+/build/
+/out/
+/release/
+
 # Prerequisites
 *.d
 
