@@ -3,6 +3,13 @@
 /out/
 /release/
 
+# Junk
+/junk/
+
+# IDE
+.vs/
+.vscode/
+
 # Prerequisites
 *.d
 
