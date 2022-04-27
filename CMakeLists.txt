@@ -1,3 +1,4 @@
+
 cmake_minimum_required (VERSION 3.15)
 
 project (ydb-cpp LANGUAGES C CXX)
@@ -41,6 +42,8 @@ project (ydb-cpp LANGUAGES C CXX)
 
   # Setup include directories.
   include_directories (
+    "${CMAKE_CURRENT_SOURCE_DIR}/include"
+    "${CMAKE_CURRENT_BINARY_DIR}/contrib"
     "${CMAKE_CURRENT_BINARY_DIR}/contrib/ydb-api-protos"
     "${CMAKE_CURRENT_BINARY_DIR}/contrib/ydb-api-protos/protos"
   )
@@ -158,3 +161,21 @@ project (ydb-cpp LANGUAGES C CXX)
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF}
   )
+
+  # Main library.
+  add_library (ydb-cpp
+    "src/driver.cc"
+    "src/executor.cc"
+    "src/scheme.cc"
+  )
+
+  target_link_libraries (ydb-cpp PUBLIC
+    ydb-cpp-proto
+  )
+
+  # Local test projects.
+  if (IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/junk")
+    add_subdirectories (
+      junk
+    )
+  endif ()
