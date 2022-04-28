@@ -134,8 +134,6 @@ project (ydb-cpp LANGUAGES C CXX)
     "${CMAKE_CURRENT_BINARY_DIR}/contrib/ydb-api-protos/protos/ydb_issue_message.pb.cc"
     "${CMAKE_CURRENT_BINARY_DIR}/contrib/ydb-api-protos/protos/ydb_monitoring.pb.cc"
     "${CMAKE_CURRENT_BINARY_DIR}/contrib/ydb-api-protos/protos/ydb_operation.pb.cc"
-    "${CMAKE_CURRENT_BINARY_DIR}/contrib/ydb-api-protos/protos/ydb_persqueue_cluster_discovery.pb.cc"
-    "${CMAKE_CURRENT_BINARY_DIR}/contrib/ydb-api-protos/protos/ydb_persqueue_v1.pb.cc"
     "${CMAKE_CURRENT_BINARY_DIR}/contrib/ydb-api-protos/protos/ydb_query_stats.pb.cc"
     "${CMAKE_CURRENT_BINARY_DIR}/contrib/ydb-api-protos/protos/ydb_rate_limiter.pb.cc"
     "${CMAKE_CURRENT_BINARY_DIR}/contrib/ydb-api-protos/protos/ydb_scheme.pb.cc"
