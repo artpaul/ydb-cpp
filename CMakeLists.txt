@@ -169,6 +169,7 @@ project (ydb-cpp LANGUAGES C CXX)
     "src/executor.cc"
     "src/operation.cc"
     "src/scheme.cc"
+    "src/table.cc"
   )
 
   target_link_libraries (ydb-cpp PUBLIC
