@@ -14,6 +14,25 @@ project (ydb-cpp LANGUAGES C CXX)
     set (CMAKE_BUILD_TYPE "Debug")
   endif ()
 
+  # Statically linking MSVC++ runtime
+  if (MSVC)
+    set (CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+  endif ()
+
+  # For suppressing warnings in third-party headers
+  if (MSVC AND MSVC_VERSION VERSION_GREATER_EQUAL 1913)
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /experimental:external /external:W0 /external:templates-")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /external:I ${CMAKE_SOURCE_DIR}/contrib")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /external:I ${CMAKE_BINARY_DIR}")
+    set (CMAKE_INCLUDE_SYSTEM_FLAG_CXX "/external:I ")
+  endif ()
+
+  # Configure Visual Studio specific params
+  if (MSVC_IDE)
+    cmake_minimum_required (VERSION 3.22)
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP4")
+  endif()
+
   # Export compile commands.
   set (CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
