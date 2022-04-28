@@ -166,6 +166,7 @@ project (ydb-cpp LANGUAGES C CXX)
   add_library (ydb-cpp
     "src/driver.cc"
     "src/executor.cc"
+    "src/operation.cc"
     "src/scheme.cc"
   )
 
