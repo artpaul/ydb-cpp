@@ -1,9 +1,7 @@
-
 cmake_minimum_required (VERSION 3.15)
 
 project (ydb-cpp LANGUAGES C CXX)
   list (APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-  include (add_subdirectories)
 
   # Setup C++ standard.
   set (CMAKE_CXX_STANDARD 17)
@@ -55,9 +53,7 @@ project (ydb-cpp LANGUAGES C CXX)
   set (_GRPC_CPP_PLUGIN_EXECUTABLE $<TARGET_FILE:grpc_cpp_plugin>)
 
   # Dependencies.
-  add_subdirectories (
-    contrib/grpc
-  )
+  add_subdirectory (contrib/grpc)
 
   # Setup include directories.
   include_directories (
@@ -180,22 +176,13 @@ project (ydb-cpp LANGUAGES C CXX)
   )
 
   # Main library.
-  add_library (ydb-cpp
-    "src/cms.cc"
-    "src/discovery.cc"
-    "src/executor.cc"
-    "src/operation.cc"
-    "src/scheme.cc"
-    "src/table.cc"
-  )
+  add_subdirectory (ydb-cpp)
 
-  target_link_libraries (ydb-cpp PUBLIC
-    ydb-cpp-proto
+  target_include_directories (ydb-cpp PUBLIC
+    "${CMAKE_CURRENT_SOURCE_DIR}"
   )
 
   # Local test projects.
   if (IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/junk")
-    add_subdirectories (
-      junk
-    )
+    add_subdirectory (junk)
   endif ()

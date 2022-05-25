@@ -1,5 +1,0 @@
-function (add_subdirectories)
-  foreach (dir ${ARGV})
-    add_subdirectory (${dir})
-  endforeach (dir)
-endfunction (add_subdirectories)

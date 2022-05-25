@@ -141,8 +141,18 @@ class TableClient {
       const Ydb::Table::BulkUpsertRequest& request);
 
  private:
-  std::shared_ptr<ClientExecutor> executor_;
-  std::unique_ptr<Ydb::Table::V1::TableService::Stub> stub_;
+  struct State {
+    std::shared_ptr<ClientExecutor> executor;
+    std::unique_ptr<Ydb::Table::V1::TableService::Stub> stub;
+
+    State(std::shared_ptr<ClientExecutor> e,
+        std::unique_ptr<Ydb::Table::V1::TableService::Stub> s)
+        : executor(std::move(e))
+        , stub(std::move(s)) {
+    }
+  };
+
+  std::shared_ptr<State> state_;
 };
 
 } // namespace ydbcpp

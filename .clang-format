@@ -57,10 +57,9 @@ BreakBeforeConceptDeclarations: true
 BreakBeforeInheritanceComma: false
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: BeforeComma
-BreakConstructorInitializersBeforeComma: false
-BreakInheritanceList: BeforeColon
+BreakInheritanceList: BeforeComma
 BreakStringLiterals: true
-ColumnLimit:     80
+ColumnLimit: 80
 CommentPragmas:  '^ IWYU pragma:'
 CompactNamespaces: false
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
@@ -74,7 +73,7 @@ EmptyLineAfterAccessModifier: Never
 EmptyLineBeforeAccessModifier: LogicalBlock
 ExperimentalAutoDetectBinPacking: false
 FixNamespaceComments: true
-PackConstructorInitializers: NextLine
+PackConstructorInitializers: Never
 QualifierAlignment: Leave
 ForEachMacros:
   - foreach
