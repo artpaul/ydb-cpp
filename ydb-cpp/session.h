@@ -2,6 +2,7 @@
 
 #include <ydb-api-protos/protos/ydb_operation.pb.h>
 
+#include "status.h"
 #include "table.h"
 
 namespace ydbcpp {
@@ -80,12 +81,25 @@ class Session {
  public:
   Session(TableClient client);
 
+  /** Create new table. */
+  Status CreateTable(const std::string path /*desc, settings*/);
+
+  /** Deletes a table. */
+  Status DropTable(const std::string path);
+
+  Status ExecuteDataQuery(std::string query, const TxControl& tx_control); // TODO: DataResult.
+
   std::string SessionId() const;
 
   Ydb::Operations::Operation Create();
 
-  Ydb::Operations::Operation ExecuteDataQuery(
-      std::string query, const TxControl& tx_control);
+  // Status
+  // - AlterTable
+  // - CopyTable
+  // - CopyTables
+  // - RenameTables
+  // - ExecuteSchemeQuery
+  // - Close (close session)
 
  public:
   TableClient client_;

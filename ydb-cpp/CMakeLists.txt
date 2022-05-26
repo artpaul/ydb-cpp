@@ -5,6 +5,7 @@ add_library (ydb-cpp
   "operation.cc"
   "scheme.cc"
   "session.cc"
+  "status.cc"
   "table.cc"
   "table_builder.cc"
 )

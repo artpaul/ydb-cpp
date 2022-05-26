@@ -25,7 +25,20 @@ Ydb::Operations::Operation Session::Create() {
   return ret.operation();
 }
 
-Ydb::Operations::Operation Session::ExecuteDataQuery(
+Status Session::DropTable(const std::string path) {
+  Ydb::Table::DropTableRequest req;
+  // Synchronous request.
+  req.mutable_operation_params()->set_operation_mode(
+      Ydb::Operations::OperationParams::SYNC);
+  req.set_session_id(session_id_);
+  req.set_path(std::move(path));
+
+  const auto result = client_.DropTable(req).get();
+
+  return Status(result.operation().status());
+}
+
+Status Session::ExecuteDataQuery(
     std::string query, const TxControl& tx_control) {
   Ydb::Table::ExecuteDataQueryRequest req;
 
@@ -37,7 +50,9 @@ Ydb::Operations::Operation Session::ExecuteDataQuery(
 
   tx_control.ToProto(req.mutable_tx_control());
 
-  return client_.ExecuteDataQuery(req).get().operation();
+  const auto result = client_.ExecuteDataQuery(req).get();
+
+  return Status(result.operation().status());
 }
 
 } // namespace ydbcpp
