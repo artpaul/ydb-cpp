@@ -1,6 +1,7 @@
-#include <ydb-cpp/executor.h>
-#include <ydb-cpp/method.h>
-#include <ydb-cpp/table.h>
+#include "table.h"
+
+#include "executor.h"
+#include "method.h"
 
 namespace ydbcpp {
 

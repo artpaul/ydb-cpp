@@ -2,8 +2,8 @@
 
 #include <ydb-api-protos/protos/ydb_operation.pb.h>
 
+#include "grpc/table.h"
 #include "status.h"
-#include "table.h"
 
 namespace ydbcpp {
 
@@ -87,7 +87,8 @@ class Session {
   /** Deletes a table. */
   Status DropTable(const std::string path);
 
-  Status ExecuteDataQuery(std::string query, const TxControl& tx_control); // TODO: DataResult.
+  Status ExecuteDataQuery(
+      std::string query, const TxControl& tx_control); // TODO: DataResult.
 
   std::string SessionId() const;
 

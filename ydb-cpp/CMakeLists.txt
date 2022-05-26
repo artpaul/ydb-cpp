@@ -1,12 +1,12 @@
 add_library (ydb-cpp
-  "cms.cc"
-  "discovery.cc"
-  "executor.cc"
-  "operation.cc"
-  "scheme.cc"
+  "grpc/cms.cc"
+  "grpc/discovery.cc"
+  "grpc/executor.cc"
+  "grpc/operation.cc"
+  "grpc/scheme.cc"
+  "grpc/table.cc"
   "session.cc"
   "status.cc"
-  "table.cc"
   "table_builder.cc"
 )
 
