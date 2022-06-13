@@ -6,6 +6,7 @@ add_library (ydb-cpp
   "grpc/scheme.cc"
   "grpc/table.cc"
   "params.cc"
+  "result.cc"
   "session.cc"
   "status.cc"
   "table_builder.cc"

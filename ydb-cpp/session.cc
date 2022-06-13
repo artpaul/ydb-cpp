@@ -71,6 +71,19 @@ Status Session::CommitTransaction(std::string tx_id) {
   return Status(ret.operation().status());
 }
 
+Status Session::RollbackTransaction(std::string tx_id) {
+  Ydb::Table::RollbackTransactionRequest req;
+  // Synchronous request.
+  req.mutable_operation_params()->set_operation_mode(
+      Ydb::Operations::OperationParams::SYNC);
+  req.set_session_id(session_id_);
+  req.set_tx_id(std::move(tx_id));
+
+  const auto ret = client_.RollbackTransaction(req).get();
+
+  return Status(ret.operation().status());
+}
+
 Status Session::DropTable(const std::string path) {
   Ydb::Table::DropTableRequest req;
   // Synchronous request.

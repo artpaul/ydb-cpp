@@ -14,6 +14,13 @@ ParamValueBuilder& ParamValueBuilder::String(std::string value) {
   return *this;
 }
 
+ParamValueBuilder& ParamValueBuilder::Timestamp(
+    const std::chrono::microseconds value) {
+  value_->mutable_type()->set_type_id(Ydb::Type::TIMESTAMP);
+  value_->mutable_value()->set_uint64_value(value.count());
+  return *this;
+}
+
 ParamsBuilder& ParamValueBuilder::Build() {
   return *params_;
 }

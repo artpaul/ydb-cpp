@@ -2,6 +2,7 @@
 
 #include <ydb-api-protos/protos/ydb_value.pb.h>
 
+#include <chrono>
 #include <map>
 #include <string>
 
@@ -14,6 +15,8 @@ class ParamValueBuilder {
   ParamValueBuilder(ParamsBuilder* params, Ydb::TypedValue* value);
 
   ParamValueBuilder& String(std::string value);
+
+  ParamValueBuilder& Timestamp(const std::chrono::microseconds value);
 
   ParamsBuilder& Build();
 

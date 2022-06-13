@@ -112,6 +112,8 @@ class Session {
 
   Status CommitTransaction(std::string tx_id);
 
+  Status RollbackTransaction(std::string tx_id);
+
   /** Create new table. */
   Status CreateTable(const std::string path /*desc, settings*/);
 
