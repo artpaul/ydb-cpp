@@ -33,4 +33,39 @@ std::map<std::string, Ydb::TypedValue> ParamsBuilder::Build() const {
   return values_;
 }
 
+Ydb::TypedValue MakeStringValue(std::string data) {
+  Ydb::TypedValue value;
+  value.mutable_type()->set_type_id(Ydb::Type::STRING);
+  value.mutable_value()->set_bytes_value(std::move(data));
+  return value;
+}
+
+Ydb::TypedValue MakeUint8Value(uint8_t data) {
+  Ydb::TypedValue value;
+  value.mutable_type()->set_type_id(Ydb::Type::UINT8);
+  value.mutable_value()->set_uint32_value(data);
+  return value;
+};
+
+Ydb::TypedValue MakeUint16Value(uint16_t data) {
+  Ydb::TypedValue value;
+  value.mutable_type()->set_type_id(Ydb::Type::UINT16);
+  value.mutable_value()->set_uint32_value(data);
+  return value;
+};
+
+Ydb::TypedValue MakeUint32Value(uint32_t data) {
+  Ydb::TypedValue value;
+  value.mutable_type()->set_type_id(Ydb::Type::UINT32);
+  value.mutable_value()->set_uint32_value(data);
+  return value;
+};
+
+Ydb::TypedValue MakeUint64Value(uint64_t data) {
+  Ydb::TypedValue value;
+  value.mutable_type()->set_type_id(Ydb::Type::UINT64);
+  value.mutable_value()->set_uint64_value(data);
+  return value;
+};
+
 } // namespace ydbcpp
